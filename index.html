@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en" class="scroll-smooth">
 <head>
 <meta charset="UTF-8">
@@ -7,6 +8,7 @@
 <title>Graphado | Create • Engage • Grow</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
@@ -40,126 +42,171 @@ justify-content:center;
 text-align:center;
 }
 
-/* SERVICES CARDS */
+/* SERVICES GRID (important for layout) */
+
+.services-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:22px;
+max-width:1100px;
+margin:auto;
+padding:20px;
+}
+
+
+/* SERVICE CARD */
 
 .service-card{
 position:relative;
-height:130px;
-border-radius:16px;
-background:rgba(255,255,255,0.04);
-border:1px solid rgba(255,255,255,0.1);
-backdrop-filter:blur(10px);
+height:180px;
+width:100%;
+border-radius:20px;
+
+background:rgba(255,255,255,0.05);
+border:1px solid rgba(255,255,255,0.12);
+
+backdrop-filter:blur(16px);
+
 display:flex;
 flex-direction:column;
 align-items:center;
 justify-content:center;
 text-align:center;
-padding:14px;
-overflow:hidden;
-transition:all .3s ease;
-}
 
+padding:22px;
+overflow:hidden;
+
+transition:all .35s ease;
+cursor:pointer;
+}
 
 
 /* ICON */
 
 .service-card i{
-font-size:20px;
-margin-bottom:6px;
-transition:transform .3s ease;
+font-size:32px;
+margin-bottom:12px;
+transition:all .35s ease;
 }
+
 
 /* TITLE */
 
 .service-title{
-font-size:12px;
-font-weight:800;
-letter-spacing:.05em;
+font-size:16px;
+font-weight:700;
+letter-spacing:.06em;
 text-transform:uppercase;
-margin-bottom:2px;
+margin-bottom:6px;
 }
+
 
 /* DESCRIPTION */
 
 .service-desc{
-font-size:9px;
+font-size:13px;
 color:#9ca3af;
+max-width:180px;
+line-height:1.4;
 letter-spacing:.04em;
 }
 
-/* HOVER */
+
+/* HOVER EFFECT */
 
 .service-card:hover{
-transform:translateY(-4px) scale(1.03);
+transform:translateY(-8px) scale(1.04);
 border-color:#E31E24;
-box-shadow:0 10px 25px rgba(227,30,36,0.25);
+box-shadow:
+0 15px 35px rgba(227,30,36,0.25),
+0 5px 15px rgba(0,0,0,0.4);
 }
 
 .service-card:hover i{
-transform:scale(1.15);
+transform:scale(1.2) rotate(5deg);
+color:#E31E24;
 }
+
 
 /* GLOW */
 
 .service-glow{
 position:absolute;
-width:160px;
-height:160px;
+width:220px;
+height:220px;
 background:radial-gradient(circle,#E31E24 0%,transparent 70%);
 opacity:0;
 pointer-events:none;
-transition:opacity .3s ease;
+transition:opacity .35s ease;
 }
 
 .service-card:hover .service-glow{
-opacity:.3;
+opacity:.35;
 }
 
-/* MOBILE OPTIMIZATION */
 
-@media (max-width:768px){
+/* ======================= */
+/* TABLET */
+/* ======================= */
+
+@media (max-width:1024px){
+
+.services-grid{
+grid-template-columns:repeat(2,1fr);
+gap:18px;
+}
 
 .service-card{
-height:115px;
-padding:12px;
+height:160px;
+padding:18px;
 }
 
 .service-card i{
-font-size:18px;
+font-size:26px;
 }
 
 .service-title{
+font-size:14px;
+}
+
+.service-desc{
+font-size:12px;
+}
+
+}
+
+/* MOBILE */
+/* ======================= */
+
+@media (max-width:640px){
+
+.services-grid{
+grid-template-columns:1fr;
+gap:16px;
+padding:14px;
+}
+
+.service-card{
+height:140px;
+border-radius:16px;
+padding:16px;
+}
+
+.service-card i{
+font-size:22px;
+margin-bottom:8px;
+}
+
+.service-title{
+font-size:13px;
+}
+
+.service-desc{
 font-size:11px;
 }
 
-.service-desc{
-font-size:8px;
 }
 
-}
-
-/* VERY SMALL SCREENS */
-
-@media (max-width:420px){
-
-.service-card{
-height:105px;
-padding:10px;
-}
-
-.service-card i{
-font-size:16px;
-}
-
-.service-title{
-font-size:10px;
-}
-
-.service-desc{
-font-size:8px;
-}
-
-}
 /* PORTFOLIO */
 
 .carousel{
@@ -219,6 +266,7 @@ border-color:#E31E24;
 }
 
 </style>
+
 </head>
 
 <body>
@@ -248,10 +296,7 @@ Media
 <div id="mobile-menu"
 class="fixed inset-0 bg-black z-40 flex flex-col items-center justify-center space-y-8 text-4xl font-black hidden">
 
-<a href="#" class="hover:text-red-primary uppercase py-4">Home</a>
-<a href="#squad" class="hover:text-red-primary uppercase py-4">Services</a>
-<a href="#portfolio" class="hover:text-red-primary uppercase py-4">Portfolio</a>
-<a href="#contact" class="hover:text-red-primary uppercase py-4">Contact</a>
+<a href="#" class="hover:text-red-primary uppercase py-4">Home</a> <a href="#services" class="hover:text-red-primary uppercase py-4">Services</a> <a href="#portfolio" class="hover:text-red-primary uppercase py-4">Portfolio</a> <a href="#contact" class="hover:text-red-primary uppercase py-4">Contact</a>
 
 </div>
 
@@ -273,116 +318,62 @@ Grow
 
 </section>
 
-<div class="grid grid-cols-2 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-    
+<!-- SERVICES -->
+
+<section id="services" class="py-20">
+
+<h2 class="text-5xl font-black uppercase text-center mb-14">
+Services
+</h2>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-6 max-w-5xl mx-auto px-6 md:px-0">
 
 <!-- SERVICE -->
 
 <div class="service-card group">
-
 <div class="service-glow"></div>
-
 <i class="fas fa-signature text-3xl mb-3 text-red-primary"></i>
-
-<h3 class="service-title">
-Brand Identity
-</h3>
-
-<p class="service-desc">
-Logo • Branding • Identity
-</p>
-
+<h3 class="service-title">Brand Identity</h3>
+<p class="service-desc">Logo • Branding • Identity</p>
 </div>
-<!-- SERVICE -->
+
 <div class="service-card group">
-
 <div class="service-glow"></div>
-
 <i class="fas fa-camera text-3xl mb-3 text-red-primary"></i>
-
-<h3 class="service-title">
-Photography
-</h3>
-
-<p class="service-desc">
-Product • Food • Commercial
-</p>
-
+<h3 class="service-title">Photography</h3>
+<p class="service-desc">Product • Food • Commercial</p>
 </div>
 
-<!-- SERVICE -->
-
 <div class="service-card group">
-
 <div class="service-glow"></div>
-
 <i class="fas fa-video text-3xl mb-3 text-red-primary"></i>
-
-<h3 class="service-title">
-Videography
-</h3>
-
-<p class="service-desc">
-Ads • Reels • Corporate
-</p>
-
+<h3 class="service-title">Videography</h3>
+<p class="service-desc">Ads • Reels • Corporate</p>
 </div>
 
-<!-- SERVICE -->
-
 <div class="service-card group">
-
 <div class="service-glow"></div>
-
 <i class="fas fa-code text-3xl mb-3 text-red-primary"></i>
-
-<h3 class="service-title">
-Web Development
-</h3>
-
-<p class="service-desc">
-Websites • Landing Pages
-</p>
-
+<h3 class="service-title">Web Development</h3>
+<p class="service-desc">Websites • Landing Pages</p>
 </div>
 
-<!-- SERVICE -->
-
 <div class="service-card group">
-
 <div class="service-glow"></div>
-
 <i class="fas fa-bullhorn text-3xl mb-3 text-red-primary"></i>
-
-<h3 class="service-title">
-Digital Marketing
-</h3>
-
-<p class="service-desc">
-Social Media • Ads
-</p>
-
+<h3 class="service-title">Digital Marketing</h3>
+<p class="service-desc">Social Media • Ads</p>
 </div>
-
-<!-- SERVICE -->
 
 <div class="service-card group">
-
 <div class="service-glow"></div>
-
 <i class="fas fa-palette text-3xl mb-3 text-red-primary"></i>
-
-<h3 class="service-title">
-Creative Design
-</h3>
-
-<p class="service-desc">
-Posters • Ads • Creatives
-</p>
-
+<h3 class="service-title">Creative Design</h3>
+<p class="service-desc">Posters • Ads • Creatives</p>
 </div>
 
 </div>
+</section>
+
 <!-- PORTFOLIO -->
 
 <section id="portfolio" class="bg-black py-24 px-6">
@@ -393,106 +384,47 @@ Portfolio
 
 <div class="relative max-w-6xl mx-auto">
 
-    <!-- LEFT ARROW -->
-    
-    <button id="prevBtn"
-    class="absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-black/70 backdrop-blur-md border border-white/20 w-12 h-12 rounded-full flex items-center justify-center hover:bg-red-primary transition">
-    
-    <i class="fas fa-chevron-left"></i>
-    
-    </button>
-    
-    <!-- RIGHT ARROW -->
-    
-    <button id="nextBtn"
-    class="absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-black/70 backdrop-blur-md border border-white/20 w-12 h-12 rounded-full flex items-center justify-center hover:bg-red-primary transition">
-    
-    <i class="fas fa-chevron-right"></i>
-    
-    </button>
+<button id="prevBtn"
+class="absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-black/70 backdrop-blur-md border border-white/20 w-12 h-12 rounded-full flex items-center justify-center hover:bg-red-primary transition"> <i class="fas fa-chevron-left"></i> </button>
+
+<button id="nextBtn"
+class="absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-black/70 backdrop-blur-md border border-white/20 w-12 h-12 rounded-full flex items-center justify-center hover:bg-red-primary transition"> <i class="fas fa-chevron-right"></i> </button>
 
 <div id="portfolioCarousel"
 class="carousel flex gap-8 overflow-x-auto snap-x snap-mandatory px-2">
 
-<!-- CARD -->
+<div class="glass-card snap-center min-w-[85vw] md:min-w-[420px] h-[320px] group">
+<img src="https://picsum.photos/600/400?1" class="absolute inset-0 w-full h-full object-cover">
+<div class="cursor-glow"></div>
+<div class="absolute inset-0 bg-black/40"></div>
+<div class="absolute bottom-6 left-6 z-10">
+<h3 class="text-xl font-bold mb-2">Photography</h3>
+<button class="magnetic">View Project</button>
+</div>
+</div>
 
 <div class="glass-card snap-center min-w-[85vw] md:min-w-[420px] h-[320px] group">
-
-<img src="https://picsum.photos/600/400?1"
-class="absolute inset-0 w-full h-full object-cover">
-
+<img src="https://picsum.photos/600/400?2" class="absolute inset-0 w-full h-full object-cover">
 <div class="cursor-glow"></div>
-
 <div class="absolute inset-0 bg-black/40"></div>
-
 <div class="absolute bottom-6 left-6 z-10">
-
-<h3 class="text-xl font-bold mb-2">
-Photography
-</h3>
-
-<button class="magnetic">
-View Project
-</button>
-
+<h3 class="text-xl font-bold mb-2">Food Photography</h3>
+<button class="magnetic">View Project</button>
 </div>
-
 </div>
-
-<!-- CARD -->
 
 <div class="glass-card snap-center min-w-[85vw] md:min-w-[420px] h-[320px] group">
-
-<img src="https://picsum.photos/600/400?2"
-class="absolute inset-0 w-full h-full object-cover">
-
+<img src="https://picsum.photos/600/400?3" class="absolute inset-0 w-full h-full object-cover">
 <div class="cursor-glow"></div>
-
 <div class="absolute inset-0 bg-black/40"></div>
-
 <div class="absolute bottom-6 left-6 z-10">
-
-<h3 class="text-xl font-bold mb-2">
-Food Photography
-</h3>
-
-<button class="magnetic">
-View Project
-</button>
-
+<h3 class="text-xl font-bold mb-2">Commercial Shoot</h3>
+<button class="magnetic">View Project</button>
+</div>
 </div>
 
 </div>
-
-<!-- CARD -->
-
-<div class="glass-card snap-center min-w-[85vw] md:min-w-[420px] h-[320px] group">
-
-<img src="https://picsum.photos/600/400?3"
-class="absolute inset-0 w-full h-full object-cover">
-
-<div class="cursor-glow"></div>
-
-<div class="absolute inset-0 bg-black/40"></div>
-
-<div class="absolute bottom-6 left-6 z-10">
-
-<h3 class="text-xl font-bold mb-2">
-Commercial Shoot
-</h3>
-
-<button class="magnetic">
-View Project
-</button>
-
 </div>
-
-</div>
-
-</div>
-
-</div>
-
 </section>
 
 <!-- CONTACT -->
@@ -526,86 +458,52 @@ Send Message
 
 <footer class="relative mt-16">
 
-    <!-- DIVIDER -->
-    
-    <div class="h-[1px] bg-gradient-to-r from-transparent via-zinc-700 to-transparent"></div>
-    
-    <div class="max-w-5xl mx-auto px-6 py-10 text-center">
-    
-    <!-- BRAND -->
-    
-    <h3 class="text-xl font-black tracking-tight">
-    GRAPHADO
-    </h3>
-    
-    <p class="text-zinc-500 text-xs tracking-wider mb-6">
-    Create • Engage • Grow
-    </p>
-    
-    <!-- SOCIAL ICONS -->
-    
-    <div class="flex justify-center gap-4 mb-6">
-    
-    <a href="#"
-    class="group w-10 h-10 flex items-center justify-center rounded-full border border-white/20 bg-white/5 backdrop-blur-md hover:bg-red-primary transition">
-    
-    <i class="fab fa-instagram text-sm group-hover:scale-110 transition"></i>
-    
-    </a>
-    
-    <a href="#"
-    class="group w-10 h-10 flex items-center justify-center rounded-full border border-white/20 bg-white/5 backdrop-blur-md hover:bg-green-500 transition">
-    
-    <i class="fab fa-whatsapp text-sm group-hover:scale-110 transition"></i>
-    
-    </a>
-    
-    <a href="#"
-    class="group w-10 h-10 flex items-center justify-center rounded-full border border-white/20 bg-white/5 backdrop-blur-md hover:bg-blue-500 transition">
-    
-    <i class="fas fa-phone text-sm group-hover:scale-110 transition"></i>
-    
-    </a>
-    
-    <a href="#"
-    class="group w-10 h-10 flex items-center justify-center rounded-full border border-white/20 bg-white/5 backdrop-blur-md hover:bg-yellow-500 transition">
-    
-    <i class="fas fa-envelope text-sm group-hover:scale-110 transition"></i>
-    
-    </a>
-    
-    </div>
-    
-    <!-- CONTACT INFO -->
-    
-    <div class="flex flex-col md:flex-row justify-center gap-2 text-xs text-zinc-500 mb-6">
-    
-    <p>
-    <i class="fas fa-phone mr-1 text-red-primary"></i>
-    +974 XXXXXXXX
-    </p>
-    
-    <p>
-    <i class="fas fa-envelope mr-1 text-red-primary"></i>
-    graphado@email.com
-    </p>
-    
-    <p>
-    <i class="fas fa-location-dot mr-1 text-red-primary"></i>
-    Qatar / India
-    </p>
-    
-    </div>
-    
-    <!-- COPYRIGHT -->
-    
-    <p class="text-[10px] text-zinc-600 uppercase tracking-widest">
-    © 2026 Graphado Media
-    </p>
-    
-    </div>
-    
-    </footer>
+<div class="h-[1px] bg-gradient-to-r from-transparent via-zinc-700 to-transparent"></div>
+
+<div class="max-w-5xl mx-auto px-6 py-10 text-center">
+
+<h3 class="text-xl font-black tracking-tight">
+GRAPHADO
+</h3>
+
+<p class="text-zinc-500 text-xs tracking-wider mb-6">
+Create • Engage • Grow
+</p>
+
+<div class="flex justify-center gap-4 mb-6">
+
+<a href="#" class="group w-10 h-10 flex items-center justify-center rounded-full border border-white/20 bg-white/5 backdrop-blur-md hover:bg-red-primary transition">
+<i class="fab fa-instagram text-sm group-hover:scale-110 transition"></i>
+</a>
+
+<a href="#" class="group w-10 h-10 flex items-center justify-center rounded-full border border-white/20 bg-white/5 backdrop-blur-md hover:bg-green-500 transition">
+<i class="fab fa-whatsapp text-sm group-hover:scale-110 transition"></i>
+</a>
+
+<a href="#" class="group w-10 h-10 flex items-center justify-center rounded-full border border-white/20 bg-white/5 backdrop-blur-md hover:bg-blue-500 transition">
+<i class="fas fa-phone text-sm group-hover:scale-110 transition"></i>
+</a>
+
+<a href="#" class="group w-10 h-10 flex items-center justify-center rounded-full border border-white/20 bg-white/5 backdrop-blur-md hover:bg-yellow-500 transition">
+<i class="fas fa-envelope text-sm group-hover:scale-110 transition"></i>
+</a>
+
+</div>
+
+<div class="flex flex-col md:flex-row justify-center gap-2 text-xs text-zinc-500 mb-6">
+
+<p><i class="fas fa-phone mr-1 text-red-primary"></i> +974 XXXXXXXX</p>
+<p><i class="fas fa-envelope mr-1 text-red-primary"></i> graphado@email.com</p>
+<p><i class="fas fa-location-dot mr-1 text-red-primary"></i> Qatar / India</p>
+
+</div>
+
+<p class="text-[10px] text-zinc-600 uppercase tracking-widest">
+© 2026 Graphado Media
+</p>
+
+</div>
+</footer>
 
 <script>
 
@@ -624,67 +522,16 @@ document.body.classList.remove('overflow-hidden')
 })
 })
 
-/* 3D TILT */
-
-document.querySelectorAll(".glass-card").forEach(card=>{
-
-card.addEventListener("mousemove",(e)=>{
-
-const rect=card.getBoundingClientRect()
-
-const x=e.clientX-rect.left
-const y=e.clientY-rect.top
-
-const centerX=rect.width/2
-const centerY=rect.height/2
-
-const rotateX=(y-centerY)/12
-const rotateY=(centerX-x)/12
-
-card.style.transform=`rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`
-
-})
-
-card.addEventListener("mouseleave",()=>{
-card.style.transform="rotateX(0) rotateY(0) scale(1)"
-})
-
-})
-
-/* CURSOR GLOW */
-
-document.querySelectorAll(".glass-card").forEach(card=>{
-
-const glow=card.querySelector(".cursor-glow")
-
-card.addEventListener("mousemove",(e)=>{
-
-const rect=card.getBoundingClientRect()
-
-glow.style.left=(e.clientX-rect.left)+"px"
-glow.style.top=(e.clientY-rect.top)+"px"
-
-})
-
-})
-/* PORTFOLIO ARROW NAVIGATION */
-
 const carousel = document.getElementById("portfolioCarousel")
 const nextBtn = document.getElementById("nextBtn")
 const prevBtn = document.getElementById("prevBtn")
 
 nextBtn.addEventListener("click",()=>{
-carousel.scrollBy({
-left:420,
-behavior:"smooth"
-})
+carousel.scrollBy({left:420,behavior:"smooth"})
 })
 
 prevBtn.addEventListener("click",()=>{
-carousel.scrollBy({
-left:-420,
-behavior:"smooth"
-})
+carousel.scrollBy({left:-420,behavior:"smooth"})
 })
 
 </script>
