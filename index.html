@@ -12,7 +12,6 @@
 <style>
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap');
-n  j   2n0i₹2
 *{
 box-sizing:border-box;
 }
@@ -41,38 +40,126 @@ justify-content:center;
 text-align:center;
 }
 
-/* SERVICES GRID */
+/* SERVICES CARDS */
 
-.mosaic-item{
+.service-card{
 position:relative;
-aspect-ratio:1/1;
-overflow:hidden;
+height:130px;
+border-radius:16px;
+background:rgba(255,255,255,0.04);
+border:1px solid rgba(255,255,255,0.1);
+backdrop-filter:blur(10px);
 display:flex;
-align-items:flex-end;
-padding:6px;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+text-align:center;
+padding:14px;
+overflow:hidden;
+transition:all .3s ease;
 }
 
-.mosaic-item img{
-position:absolute;
-inset:0;
-width:100%;
-height:100%;
-object-fit:cover;
-filter:grayscale(100%);
-mix-blend-mode:multiply;
+
+
+/* ICON */
+
+.service-card i{
+font-size:20px;
+margin-bottom:6px;
+transition:transform .3s ease;
 }
 
-.creator-name{
-position:relative;
-z-index:10;
-font-size:10px;
+/* TITLE */
+
+.service-title{
+font-size:12px;
 font-weight:800;
+letter-spacing:.05em;
 text-transform:uppercase;
-line-height:1;
-color:white;
-pointer-events:none;
+margin-bottom:2px;
 }
 
+/* DESCRIPTION */
+
+.service-desc{
+font-size:9px;
+color:#9ca3af;
+letter-spacing:.04em;
+}
+
+/* HOVER */
+
+.service-card:hover{
+transform:translateY(-4px) scale(1.03);
+border-color:#E31E24;
+box-shadow:0 10px 25px rgba(227,30,36,0.25);
+}
+
+.service-card:hover i{
+transform:scale(1.15);
+}
+
+/* GLOW */
+
+.service-glow{
+position:absolute;
+width:160px;
+height:160px;
+background:radial-gradient(circle,#E31E24 0%,transparent 70%);
+opacity:0;
+pointer-events:none;
+transition:opacity .3s ease;
+}
+
+.service-card:hover .service-glow{
+opacity:.3;
+}
+
+/* MOBILE OPTIMIZATION */
+
+@media (max-width:768px){
+
+.service-card{
+height:115px;
+padding:12px;
+}
+
+.service-card i{
+font-size:18px;
+}
+
+.service-title{
+font-size:11px;
+}
+
+.service-desc{
+font-size:8px;
+}
+
+}
+
+/* VERY SMALL SCREENS */
+
+@media (max-width:420px){
+
+.service-card{
+height:105px;
+padding:10px;
+}
+
+.service-card i{
+font-size:16px;
+}
+
+.service-title{
+font-size:10px;
+}
+
+.service-desc{
+font-size:8px;
+}
+
+}
 /* PORTFOLIO */
 
 .carousel{
@@ -154,7 +241,6 @@ Media
 <div class="w-6 h-0.5 bg-white"></div>
 <div class="w-6 h-0.5 bg-white"></div>
 </button>
-
 </header>
 
 <!-- MOBILE MENU -->
@@ -187,66 +273,116 @@ Grow
 
 </section>
 
-<!-- SERVICES -->
+<div class="grid grid-cols-2 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+    
 
-<section id="squad" class="py-12 px-5 bg-black">
+<!-- SERVICE -->
 
-<div class="flex items-start gap-4 mb-10">
-<h2 class="text-3xl font-black uppercase leading-[0.9] tracking-tighter">
-Our Services,<br>
-How We<br>
-Help
-</h2>
+<div class="service-card group">
 
-<div class="w-[1px] h-20 bg-zinc-800"></div>
+<div class="service-glow"></div>
+
+<i class="fas fa-signature text-3xl mb-3 text-red-primary"></i>
+
+<h3 class="service-title">
+Brand Identity
+</h3>
+
+<p class="service-desc">
+Logo • Branding • Identity
+</p>
+
 </div>
+<!-- SERVICE -->
+<div class="service-card group">
 
-<div class="grid grid-cols-2 md:grid-cols-4 gap-3 max-w-lg mx-auto">
+<div class="service-glow"></div>
 
-<div class="mosaic-item bg-red-primary">
-<img src="https://picsum.photos/300?1">
-<span class="creator-name">Branding</span>
-</div>
+<i class="fas fa-camera text-3xl mb-3 text-red-primary"></i>
 
-<div class="mosaic-item bg-amber-400">
-<img src="https://picsum.photos/300?2">
-<span class="creator-name">Videography</span>
-</div>
+<h3 class="service-title">
+Photography
+</h3>
 
-<div class="mosaic-item bg-zinc-900 border border-zinc-800">
-<img src="https://picsum.photos/300?3">
-<span class="creator-name">Digital Marketing</span>
-</div>
-
-<div class="mosaic-item bg-blue-600">
-<img src="https://picsum.photos/300?4">
-<span class="creator-name">Web Development</span>
-</div>
-
-<div class="mosaic-item bg-red-primary">
-<img src="https://picsum.photos/300?5">
-<span class="creator-name">Graphic Design</span>
-</div>
-
-<div class="mosaic-item bg-purple-600">
-<img src="https://picsum.photos/300?6">
-<span class="creator-name">Anchoring</span>
-</div>
-
-<div class="mosaic-item bg-red-primary">
-<img src="https://picsum.photos/300?7">
-<span class="creator-name">Logo Design</span>
-</div>
-
-<div class="mosaic-item bg-lime-500">
-<img src="https://picsum.photos/300?8">
-<span class="creator-name">UI/UX</span>
-</div>
+<p class="service-desc">
+Product • Food • Commercial
+</p>
 
 </div>
 
-</section>
+<!-- SERVICE -->
 
+<div class="service-card group">
+
+<div class="service-glow"></div>
+
+<i class="fas fa-video text-3xl mb-3 text-red-primary"></i>
+
+<h3 class="service-title">
+Videography
+</h3>
+
+<p class="service-desc">
+Ads • Reels • Corporate
+</p>
+
+</div>
+
+<!-- SERVICE -->
+
+<div class="service-card group">
+
+<div class="service-glow"></div>
+
+<i class="fas fa-code text-3xl mb-3 text-red-primary"></i>
+
+<h3 class="service-title">
+Web Development
+</h3>
+
+<p class="service-desc">
+Websites • Landing Pages
+</p>
+
+</div>
+
+<!-- SERVICE -->
+
+<div class="service-card group">
+
+<div class="service-glow"></div>
+
+<i class="fas fa-bullhorn text-3xl mb-3 text-red-primary"></i>
+
+<h3 class="service-title">
+Digital Marketing
+</h3>
+
+<p class="service-desc">
+Social Media • Ads
+</p>
+
+</div>
+
+<!-- SERVICE -->
+
+<div class="service-card group">
+
+<div class="service-glow"></div>
+
+<i class="fas fa-palette text-3xl mb-3 text-red-primary"></i>
+
+<h3 class="service-title">
+Creative Design
+</h3>
+
+<p class="service-desc">
+Posters • Ads • Creatives
+</p>
+
+</div>
+
+</div>
 <!-- PORTFOLIO -->
 
 <section id="portfolio" class="bg-black py-24 px-6">
@@ -256,6 +392,24 @@ Portfolio
 </h2>
 
 <div class="relative max-w-6xl mx-auto">
+
+    <!-- LEFT ARROW -->
+    
+    <button id="prevBtn"
+    class="absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-black/70 backdrop-blur-md border border-white/20 w-12 h-12 rounded-full flex items-center justify-center hover:bg-red-primary transition">
+    
+    <i class="fas fa-chevron-left"></i>
+    
+    </button>
+    
+    <!-- RIGHT ARROW -->
+    
+    <button id="nextBtn"
+    class="absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-black/70 backdrop-blur-md border border-white/20 w-12 h-12 rounded-full flex items-center justify-center hover:bg-red-primary transition">
+    
+    <i class="fas fa-chevron-right"></i>
+    
+    </button>
 
 <div id="portfolioCarousel"
 class="carousel flex gap-8 overflow-x-auto snap-x snap-mandatory px-2">
@@ -370,37 +524,88 @@ Send Message
 
 <!-- FOOTER -->
 
-<footer class="py-12 border-t border-zinc-900 text-center space-y-6">
+<footer class="relative mt-16">
 
-<div class="flex flex-col md:flex-row items-center justify-center gap-6 text-lg">
-
-<a href="#" class="flex items-center gap-2 hover:text-red-primary">
-<i class="fab fa-instagram"></i>
-<span class="text-sm">Instagram</span>
-</a>
-
-<a href="#" class="flex items-center gap-2 hover:text-red-primary">
-<i class="fab fa-whatsapp"></i>
-<span class="text-sm">WhatsApp</span>
-</a>
-
-<a href="#" class="flex items-center gap-2 hover:text-red-primary">
-<i class="fas fa-phone"></i>
-<span class="text-sm">Call</span>
-</a>
-
-<a href="#" class="flex items-center gap-2 hover:text-red-primary">
-<i class="fas fa-envelope"></i>
-<span class="text-sm">Email</span>
-</a>
-
-</div>
-
-<p class="text-[10px] text-zinc-600 uppercase tracking-widest">
-© 2026 Graphado Media | Create • Engage • Grow
-</p>
-
-</footer>
+    <!-- DIVIDER -->
+    
+    <div class="h-[1px] bg-gradient-to-r from-transparent via-zinc-700 to-transparent"></div>
+    
+    <div class="max-w-5xl mx-auto px-6 py-10 text-center">
+    
+    <!-- BRAND -->
+    
+    <h3 class="text-xl font-black tracking-tight">
+    GRAPHADO
+    </h3>
+    
+    <p class="text-zinc-500 text-xs tracking-wider mb-6">
+    Create • Engage • Grow
+    </p>
+    
+    <!-- SOCIAL ICONS -->
+    
+    <div class="flex justify-center gap-4 mb-6">
+    
+    <a href="#"
+    class="group w-10 h-10 flex items-center justify-center rounded-full border border-white/20 bg-white/5 backdrop-blur-md hover:bg-red-primary transition">
+    
+    <i class="fab fa-instagram text-sm group-hover:scale-110 transition"></i>
+    
+    </a>
+    
+    <a href="#"
+    class="group w-10 h-10 flex items-center justify-center rounded-full border border-white/20 bg-white/5 backdrop-blur-md hover:bg-green-500 transition">
+    
+    <i class="fab fa-whatsapp text-sm group-hover:scale-110 transition"></i>
+    
+    </a>
+    
+    <a href="#"
+    class="group w-10 h-10 flex items-center justify-center rounded-full border border-white/20 bg-white/5 backdrop-blur-md hover:bg-blue-500 transition">
+    
+    <i class="fas fa-phone text-sm group-hover:scale-110 transition"></i>
+    
+    </a>
+    
+    <a href="#"
+    class="group w-10 h-10 flex items-center justify-center rounded-full border border-white/20 bg-white/5 backdrop-blur-md hover:bg-yellow-500 transition">
+    
+    <i class="fas fa-envelope text-sm group-hover:scale-110 transition"></i>
+    
+    </a>
+    
+    </div>
+    
+    <!-- CONTACT INFO -->
+    
+    <div class="flex flex-col md:flex-row justify-center gap-2 text-xs text-zinc-500 mb-6">
+    
+    <p>
+    <i class="fas fa-phone mr-1 text-red-primary"></i>
+    +974 XXXXXXXX
+    </p>
+    
+    <p>
+    <i class="fas fa-envelope mr-1 text-red-primary"></i>
+    graphado@email.com
+    </p>
+    
+    <p>
+    <i class="fas fa-location-dot mr-1 text-red-primary"></i>
+    Qatar / India
+    </p>
+    
+    </div>
+    
+    <!-- COPYRIGHT -->
+    
+    <p class="text-[10px] text-zinc-600 uppercase tracking-widest">
+    © 2026 Graphado Media
+    </p>
+    
+    </div>
+    
+    </footer>
 
 <script>
 
@@ -461,6 +666,25 @@ glow.style.top=(e.clientY-rect.top)+"px"
 
 })
 
+})
+/* PORTFOLIO ARROW NAVIGATION */
+
+const carousel = document.getElementById("portfolioCarousel")
+const nextBtn = document.getElementById("nextBtn")
+const prevBtn = document.getElementById("prevBtn")
+
+nextBtn.addEventListener("click",()=>{
+carousel.scrollBy({
+left:420,
+behavior:"smooth"
+})
+})
+
+prevBtn.addEventListener("click",()=>{
+carousel.scrollBy({
+left:-420,
+behavior:"smooth"
+})
 })
 
 </script>
