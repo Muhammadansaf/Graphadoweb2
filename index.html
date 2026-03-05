@@ -18,6 +18,42 @@
 box-sizing:border-box;
 }
 
+.menu-card{
+position:relative;
+}
+
+#cursor-light{
+position:fixed;
+top:0;
+left:0;
+width:600px;
+height:600px;
+pointer-events:none;
+border-radius:50%;
+
+background:radial-gradient(circle,
+rgba(227,30,36,0.15) 0%,
+rgba(227,30,36,0.08) 30%,
+transparent 70%);
+
+transform:translate(-50%,-50%);
+z-index:1;
+filter:blur(40px);
+}
+.menu-card::before{
+content:"";
+position:absolute;
+inset:-1px;
+border-radius:inherit;
+background:radial-gradient(circle at top,#E31E24,transparent 60%);
+opacity:.15;
+pointer-events:none;
+}
+
+.menu-item{
+transition:transform .2s ease;
+}
+
 body{
 font-family:'Inter',sans-serif;
 background:#000;
@@ -309,9 +345,32 @@ Media
 <!-- MOBILE MENU -->
 
 <div id="mobile-menu"
-class="fixed inset-0 bg-black z-40 flex flex-col items-center justify-center space-y-8 text-4xl font-black hidden">
+class="fixed inset-0 z-40 hidden flex items-start justify-end p-6">
 
-<a href="#" class="hover:text-red-primary uppercase py-4">Home</a> <a href="#services" class="hover:text-red-primary uppercase py-4">Services</a> <a href="#portfolio" class="hover:text-red-primary uppercase py-4">Portfolio</a> <a href="#contact" class="hover:text-red-primary uppercase py-4">Contact</a>
+<!-- BACKDROP -->
+<div id="menu-backdrop"
+class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+
+<!-- MENU CARD -->
+<div class="relative bg-black/80 backdrop-blur-xl border border-white/10
+rounded-2xl w-[260px] p-6 shadow-[0_20px_60px_rgba(0,0,0,0.8)] menu-card">
+
+<!-- CLOSE -->
+<button id="close-menu"
+class="absolute top-4 right-4 text-gray-400 hover:text-white">
+<i class="fas fa-xmark"></i>
+</button>
+
+<nav class="flex flex-col space-y-6 mt-8 text-lg font-semibold tracking-wide">
+
+<a href="#" class="menu-item hover:text-red-primary transition">Home</a>
+<a href="#services" class="menu-item hover:text-red-primary transition">Services</a>
+<a href="#portfolio" class="menu-item hover:text-red-primary transition">Portfolio</a>
+<a href="#contact" class="menu-item hover:text-red-primary transition">Contact</a>
+
+</nav>
+
+</div>
 
 </div>
 
@@ -560,31 +619,35 @@ Create • Engage • Grow
 
 <script>
 
-const menuBtn=document.getElementById('menu-btn')
-const mobileMenu=document.getElementById('mobile-menu')
+const menuBtn = document.getElementById("menu-btn")
+const mobileMenu = document.getElementById("mobile-menu")
+const closeMenu = document.getElementById("close-menu")
+const backdrop = document.getElementById("menu-backdrop")
 
-menuBtn.addEventListener('click',()=>{
-mobileMenu.classList.toggle('hidden')
-document.body.classList.toggle('overflow-hidden')
+menuBtn.addEventListener("click", () => {
+
+mobileMenu.classList.remove("hidden")
+
+gsap.from(".menu-card",{
+x:120,
+opacity:0,
+duration:0.5,
+ease:"power3.out"
 })
 
-mobileMenu.querySelectorAll('a').forEach(link=>{
-link.addEventListener('click',()=>{
-mobileMenu.classList.add('hidden')
-document.body.classList.remove('overflow-hidden')
-})
 })
 
-const carousel = document.getElementById("portfolioCarousel")
-const nextBtn = document.getElementById("nextBtn")
-const prevBtn = document.getElementById("prevBtn")
+function closeMenuCard(){
 
-nextBtn.addEventListener("click",()=>{
-carousel.scrollBy({left:420,behavior:"smooth"})
-})
+mobileMenu.classList.add("hidden")
 
-prevBtn.addEventListener("click",()=>{
-carousel.scrollBy({left:-420,behavior:"smooth"})
+}
+
+closeMenu.addEventListener("click", closeMenuCard)
+backdrop.addEventListener("click", closeMenuCard)
+
+document.querySelectorAll(".menu-item").forEach(link=>{
+link.addEventListener("click", closeMenuCard)
 })
 
 </script>
@@ -662,6 +725,14 @@ else {
 header.classList.add("py-5")
 header.classList.remove("py-3","bg-black/80","shadow-lg")
 }
+
+})
+const cursorLight = document.getElementById("cursor-light")
+
+document.addEventListener("mousemove",(e)=>{
+
+cursorLight.style.left = e.clientX + "px"
+cursorLight.style.top = e.clientY + "px"
 
 })
 </script>
