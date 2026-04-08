@@ -325,7 +325,19 @@ transform:translateY(-4px);
 .whatsapp-float:hover {
   transform: scale(1.1);
 }
-
+.popup {
+  position: fixed;
+  bottom: 30px;
+  right: 20px;
+  background: #25D366;
+  color: white;
+  padding: 14px 18px;
+  border-radius: 8px;
+  display: none;
+  font-size: 14px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+  z-index: 1000;
+}
 </style>
 
 </head>
@@ -572,32 +584,41 @@ class="carousel flex gap-8 overflow-x-auto snap-x snap-mandatory px-2">
 </div>
 </section>
 
-<!-- CONTACT -->
-
 <section id="contact" class="py-12 px-8 max-w-xl mx-auto">
 
-<h2 class="text-4xl font-black mb-8 uppercase text-center">
-Contact Us
-</h2>
-
-<form class="space-y-4" action="https://formsubmit.co/support@graphado.in" method="POST">
-
-<input type="text" placeholder="Name"
-class="w-full bg-gray-100 p-5 text-sm outline-none border-l-4 border-transparent focus:border-red-primary">
-
-<input type="email" placeholder="Email"
-class="w-full bg-gray-100 p-5 text-sm outline-none border-l-4 border-transparent focus:border-red-primary">
-
-<textarea placeholder="Message" rows="4"
-class="w-full bg-gray-100 p-5 text-sm outline-none border-l-4 border-transparent focus:border-red-primary"></textarea>
-
- <!-- Redirect after submit -->
- <input type="hidden" name="_redirect" value="https://graphado.in/thankyou.html">
-
-<button class="w-full bg-primary text-white py-4 font-black uppercase tracking-widest rounded-lg 
-hover:bg-[#4b54d1] transition duration-300">
-Send Message
-</button>
+  <h2 class="text-4xl font-black mb-8 uppercase text-center">
+  Contact Us
+  </h2>
+  
+  <form id="contact-form" class="space-y-4" 
+  action="https://formsubmit.co/support@graphado.in" method="POST">
+  
+    <input type="text" name="name" required
+    class="w-full bg-gray-100 p-5 text-sm outline-none border-l-4 border-transparent focus:border-red-primary">
+  
+    <input type="email" name="email" required
+    class="w-full bg-gray-100 p-5 text-sm outline-none border-l-4 border-transparent focus:border-red-primary">
+  
+    <textarea name="message" required
+    class="w-full bg-gray-100 p-5 text-sm outline-none border-l-4 border-transparent focus:border-red-primary"></textarea>
+  
+    <!-- FormSubmit Settings -->
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+  
+    <button type="submit"
+    class="w-full bg-primary text-white py-4 font-black uppercase tracking-widest rounded-lg hover:bg-[#4b54d1] transition duration-300">
+    Send Message
+    </button>
+  
+  </form>
+  
+  <!-- SUCCESS POPUP -->
+  <div id="success-popup" class="popup">
+    ✅ Message sent successfully!
+  </div>
+  
+  </section>
 
 </form>
 
@@ -790,6 +811,31 @@ header.classList.remove("py-3","bg-white/80","shadow-lg")
 }
 
 })
+
+<script>
+const form = document.getElementById('contact-form');
+const popup = document.getElementById('success-popup');
+
+form.addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  fetch(form.action, {
+    method: "POST",
+    body: new FormData(form)
+  })
+  .then(() => {
+    popup.style.display = "block";
+    form.reset();
+
+    setTimeout(() => {
+      popup.style.display = "none";
+    }, 3000);
+  })
+  .catch(() => {
+    alert("Something went wrong!");
+  });
+});
+</script>
 </script>
 <!-- WhatsApp Floating Button -->
 <a href="https://wa.me/918156887767?text=Hi%2C%20can%20I%20get%20more%20info%20about%20your%20service" 
